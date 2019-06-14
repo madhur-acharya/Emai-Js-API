@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang= "en">
+<head>
+	<title> emailjs test</title>
+	<meta charset= "UTF-8">
+</head>
+<body>
+	
+	<lable>From Name &nbsp</lable><input type= "text" id= "from">
+	<br>
+	<br>
+	<lable>Message &nbsp &nbsp &nbsp &nbsp</lable><textarea rows= "5" cols= "30" id= "text"></textarea>
+	<br>
+	<br>
+	<button id= "send" onclick= "send_email()" >send email</button>
+
+<script type="text/javascript" src="https://cdn.emailjs.com/dist/email.min.js"></script>
+<script type="text/javascript">
+   (function(){
+      emailjs.init("<YourUserIdHere");
+   })();
+	
+	function send_email()
+	{
+emailjs.send("gmail", "template_1",{from_name: document.getElementById("from").value, message_html: document.getElementById("text").value})
+.then(function(response) {
+   console.log("SUCCESS. status=%d, text=%s", response.status, response.text);
+}, function(err) {
+   console.log("FAILED. error=", err);
+});
+	}
+</script>
+</body>
+</html>
